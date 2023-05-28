@@ -1,0 +1,104 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Cheat Gui | by Lopatka423", "BloodTheme")
+
+--Main
+local Main = Window:NewTab("Scripts")
+local MainSection = Main:NewSection("Main")
+
+MainSection:NewButton("Infinity Yield", "Run Infinity Yield", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+MainSection:NewButton("Dex Explorer", "Run Dex Explorer", function()
+    loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Dex%20Explorer.txt"))()
+end)
+
+--Player
+local Player = Window:NewTab("Player")
+local PlayerSection = Player:NewSection("Player Cheat")
+
+PlayerSection:NewToggle("Super Human", "Make you very fast and jump", function(state)
+	if state then
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 120
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = 120
+	else
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+	end
+end)
+
+PlayerSection:NewButton("Infinity Jump Press V", "Infinity Jump press to v", function()
+  pcall(loadstring(game:HttpGet("https://pastebin.com/raw/2wgbZ6Xd")))
+end)
+
+PlayerSection:NewToggle("Noclip", "Make you very fast and jump", function(state)
+	if state then
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 120
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = 120
+	else
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+	end
+end)
+
+PlayerSection:NewSlider("WalkSpeed", "SPEED!!", 500, 16, function(s) 
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+
+PlayerSection:NewSlider("JumpPower", "JUMP!!", 500, 50, function(s) 
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+end)
+
+local Other = Window:NewTab("Other")
+local OtherSection = Other:NewSection("Others scripts")
+
+OtherSection:NewButton("Esp", "You can visible players", function()
+	local color = BrickColor.new(50,0,250)
+local transparency = .8
+ 
+local Players = game:GetService("Players")
+local function _ESP(c)
+  repeat wait() until c.PrimaryPart ~= nil
+  for i,p in pairs(c:GetChildren()) do
+    if p.ClassName == "Part" or p.ClassName == "MeshPart" then
+      if p:FindFirstChild("shit") then p.shit:Destroy() end
+      local a = Instance.new("BoxHandleAdornment",p)
+      a.Name = "shit"
+      a.Size = p.Size
+      a.Color = color
+      a.Transparency = transparency
+      a.AlwaysOnTop = true    
+      a.Visible = true    
+      a.Adornee = p
+      a.ZIndex = true    
+ 
+    end
+  end
+end
+local function ESP()
+  for i,v in pairs(Players:GetChildren()) do
+    if v ~= game.Players.LocalPlayer then
+      if v.Character then
+        _ESP(v.Character)
+      end
+      v.CharacterAdded:Connect(function(chr)
+        _ESP(chr)
+      end)
+    end
+  end
+  Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function(chr)
+      _ESP(chr)
+    end)  
+  end)
+end
+ESP()
+ end)
+
+ OtherSection:NewButton("Esp", "You can visible players", function()
+	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Click%20Teleport.txt"))()
+ end)
+
+ OtherSection:NewButton("Btools", "You will be given items", function()
+	loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/BTools.txt"))()
+ end)
